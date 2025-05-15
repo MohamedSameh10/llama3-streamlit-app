@@ -1,0 +1,10 @@
+langchain
+python-dotenv
+langchain-community
+bs4
+langchain-text-splitters
+chromadb
+faiss-cpu
+langchain_chroma
+ipykernel
+langsmith
