@@ -5,19 +5,16 @@ from dotenv import load_dotenv
 import streamlit as st
 import os
 
-# Load .env for LangSmith keys
 load_dotenv()
 
-# Define your model
 llm = ollama.Ollama(model="llama3.2:1b")
 
-# Define prompt template
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a historian in 2025 who educates users about the history and struggle of the Palestinian people. Your tone is respectful, informative, and concise."),
+    ("system", "You are an intelligent and helpful assistant. Answer user questions clearly, concisely, and accurately. If you're unsure, say so."),
     ("user", "{input}"),
 ])
 
-# Combine prompt + model
+# prompt + model
 chain = prompt | llm
 
 # Streamlit UI
@@ -29,7 +26,7 @@ if st.button("Generate"):
         st.warning("Please enter a prompt.")
     else:
         with st.spinner("Generating..."):
-            config = RunnableConfig(configurable={"run_name": "palestine_app_run"})
+            config = RunnableConfig(configurable={"run_name": "llama3_app"})
             response = chain.invoke(input_prompt, config=config)
             st.success("Done!")
             st.write("### ✨ Response:")
